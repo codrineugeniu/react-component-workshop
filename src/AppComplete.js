@@ -37,10 +37,30 @@ export const MOCK_PRODUCTS = [
 ];
 
 function App() {
+  const searchTerm = "Ba";
+
   return (
     <div className="App">
       <Header title="Best web app ☁️" />
-      <ProductList products={MOCK_PRODUCTS} />
+      <div>
+        <div>
+          <input type="text" placeholder="Filter..." />
+          <label>
+            <input type="checkbox" value="instock" /> Hide out of stock
+            products.
+          </label>
+        </div>
+        <ul>
+          {MOCK_PRODUCTS.filter((product) =>
+            product.name.includes(searchTerm)
+          ).map((product) => (
+            <li>
+              <strong>{product.name}</strong>
+              {product.price}
+            </li>
+          ))}
+        </ul>
+      </div>
       <Footer />
     </div>
   );
